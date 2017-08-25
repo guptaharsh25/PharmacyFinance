@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.geometry.Orientation;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
 
 
 public class MainPage {
@@ -29,6 +31,13 @@ public class MainPage {
         Stage mainStage = new Stage();
 
         mainStage.setTitle(mainPageTitle);
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+        //set Stage boundaries to visible bounds of the main screen
+        mainStage.setX(primaryScreenBounds.getMinX());
+        mainStage.setY(primaryScreenBounds.getMinY());
+        mainStage.setWidth(primaryScreenBounds.getWidth());
+        mainStage.setHeight(primaryScreenBounds.getHeight());
 
         loginStage.hide();
         mainStage.show();
@@ -37,7 +46,7 @@ public class MainPage {
     public ListView<String> initSidePanelMenu (){
 
         ListView<String> menuPanel = new ListView<String>();
-        ObservableList<String> menuItems =FXCollections.observableArrayList (
+        ObservableList<String> menuItems = FXCollections.observableArrayList (
                 "Home",
                         "Daily POS Statements",
                         "Insurance Claims",
