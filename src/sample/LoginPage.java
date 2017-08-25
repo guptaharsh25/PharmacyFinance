@@ -69,7 +69,7 @@ public class LoginPage {
         button = new Button();
         button.setText(buttonText);
         button.setFont(Font.font("Helvetica", FontWeight.NORMAL,12));
-        button.setOnAction(ctrl.getHandler(passwordEntry, passwordCheck));
+        button.setOnAction(ctrl.getHandler(primaryStage, passwordEntry, passwordCheck));
 
         HBox buttonHBox = new HBox();
         buttonHBox.setSpacing(10);

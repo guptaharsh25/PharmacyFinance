@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -21,18 +22,16 @@ public class MainPage {
 
     Button settingsButton;
 
-    public void init(){
+    public void init(Stage loginStage){
 
         mainPageTitle = "Pharmacy Finance Manager";
 
-        ctrl = new Controller();
-
         Stage mainStage = new Stage();
-        mainStage.setFullScreen(true);
+
         mainStage.setTitle(mainPageTitle);
 
+        loginStage.hide();
         mainStage.show();
-
     }
 
     public ListView<String> initSidePanelMenu (){
@@ -60,6 +59,7 @@ public class MainPage {
     public StackPane setupSidePanel(){
 
         StackPane sidePane = new StackPane();
+        HBox upperBar = new HBox();
         HBox settingsBar = new HBox();
 
         settingsButton = new Button();
@@ -68,10 +68,18 @@ public class MainPage {
 
         ListView<String> menuOfItems = initSidePanelMenu();
 
+        Label menuLabel = new Label();
+        menuLabel.setText("Menu");
+
+        Button collapser = new Button();
+
+        upperBar.getChildren().addAll(menuLabel, collapser);
+
         settingsBar.getChildren().add(settingsButton);
 
         sidePane.getChildren().add(settingsBar);
         sidePane.getChildren().add(menuOfItems);
+        sidePane.getChildren().add(upperBar);
 
         return sidePane;
     }

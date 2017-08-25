@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.scene.text.*;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Controller {
 
@@ -15,12 +16,12 @@ public class Controller {
 
     private EventHandler<ActionEvent> EH;
 
-    public void loginChecker(TextField passwordEntry, Text passwordCheck){
+    public void loginChecker(Stage loginStage, TextField passwordEntry, Text passwordCheck){
         EH = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String inPass = getPass(passwordEntry);
-                validatePass(inPass, passwordCheck);
+                validatePass(loginStage, inPass, passwordCheck);
             }
         };
     }
@@ -29,7 +30,9 @@ public class Controller {
         return passwordEntry.getText();
     }
 
-    public void validatePass(String inPass, Text passwordCheck){
+    public void validatePass(Stage loginStage, String inPass, Text passwordCheck){
+
+        initMain = new MainPage();
 
         if (inPass.equals(password)) {
             System.out.print("\n" + inPass);
@@ -37,7 +40,7 @@ public class Controller {
             passwordCheck.setFill(Color.GREEN);
             passwordCheck.setText("Login successful. Please wait...");
 
-            initMain.init();
+            initMain.init(loginStage);
 
             passwordTriesLeft = 3;
         }
@@ -52,9 +55,9 @@ public class Controller {
         }
     }
 
-    public EventHandler<ActionEvent> getHandler(TextField passwordEntry, Text passwordChecker){
+    public EventHandler<ActionEvent> getHandler(Stage loginStage, TextField passwordEntry, Text passwordChecker){
 
-        loginChecker(passwordEntry, passwordChecker);
+        loginChecker(loginStage, passwordEntry, passwordChecker);
 
         return EH;
     }
