@@ -27,7 +27,7 @@ public class LoginPage {
     PasswordField passwordEntry;
     Button button;
 
-    public void LoginPageCreation(Stage primaryStage){
+    public void loginPageSetup(Stage primaryStage){
 
         Controller ctrl = new Controller();
 

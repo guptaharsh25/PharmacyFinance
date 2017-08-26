@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -28,9 +28,13 @@ public class MainPage {
 
         mainPageTitle = "Pharmacy Finance Manager";
 
+        Home homeScene = new Home();
+
         Stage mainStage = new Stage();
 
         mainStage.setTitle(mainPageTitle);
+        mainStage.setScene(homeScene.initHome(mainStage));
+
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
         //set Stage boundaries to visible bounds of the main screen
@@ -65,9 +69,9 @@ public class MainPage {
         return menuPanel;
     }
 
-    public StackPane setupSidePanel(){
+    public VBox setupSidePanel(){
 
-        StackPane sidePane = new StackPane();
+        VBox sidePane = new VBox();
         HBox upperBar = new HBox();
         HBox settingsBar = new HBox();
 
@@ -86,9 +90,9 @@ public class MainPage {
 
         settingsBar.getChildren().add(settingsButton);
 
-        sidePane.getChildren().add(settingsBar);
-        sidePane.getChildren().add(menuOfItems);
         sidePane.getChildren().add(upperBar);
+        sidePane.getChildren().add(menuOfItems);
+        sidePane.getChildren().add(settingsBar);
 
         return sidePane;
     }
